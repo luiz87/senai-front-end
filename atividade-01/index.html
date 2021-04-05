@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Primeira Página com CSS</title>
+    <link rel="stylesheet" href="css/folha01.css">
+    <link rel="stylesheet" href="css/folha02.css">
+    <link rel="stylesheet" href="css/folha03.css">
+    <link rel="stylesheet" href="css/folha04.css">
+</head>
+
+<body>
+    <script src="js/script.js" ></script>
+    <!-- html -->
+    <div class="wrapper">
+        <div id="top">
+            <h1>Bem-Vindo à minha página inicial</h1>
+            <p>Use o menu para selecionar diferentes folhas de estilo</p>
+        </div>
+        <div class="wrapper">
+            <div id="menubar">
+                <ul id="menulist">
+                    <li onclick="estilo(0)" class="item-menu">Folha de estilo 1</li>
+                    <li onclick="estilo(1)" class="item-menu">Folha de estilo 2</li>
+                    <li onclick="estilo(2)" class="item-menu">Folha de estilo 3</li>
+                    <li onclick="estilo(3)" class="item-menu">Folha de estilo 4</li>
+                    <li onclick="semEstilo()" class="item-menu">Sem Folha de estilo</li>
+                </ul>
+            </div>
+            <div id="main">
+                <h1>Folhas de estilo diferentes na mesma página</h1>
+                <p>Esta é uma demonstração de como diferentes folhas de estilo podem alterar o layout de sua página
+                    HTML.Você pod alterar o layout desta página selecionando diferentes folhas de estilo no menu ou
+                    selecionando um dos seguintes links<br>
+                    <a onclick="estilo(0)" href="#">Folha de estilo 1,</a>
+                    <a onclick="estilo(1)" href="#">Folha de estilo 2,</a>
+                    <a onclick="estilo(2)" href="#">Folha de estilo 3,</a>
+                    <a onclick="estilo(3)" href="#">Folha de estilo 4.</a>
+                </p>
+                <h2>Sem estilos</h2>
+                <p>Esta página usa elementos DIV para agrupar diferentes seções da página HTML. Clique aqui para ver a
+                    aparência da página sem folha de estilo:
+                    <br>
+                    <a onclick="semEstilo()" href="#">Sem Folha de estilo.</a>
+                </p>
+            </div>
+
+            <div id="sidebar">
+                <h3>Barra Lateral
+                </h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+                    laoreet
+                    dolore magna aliquam erat volutpat.
+
+                </p>
+            </div>
+        </div>
+        <div id="bottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+            tincidunt
+            ut laoreet
+            dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+            suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in
+            vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
+            accumsan et
+            iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+            facilisi.
+            (arquivo atualizado)
+        </div>
+    </div>
+</body>
+
+</html>

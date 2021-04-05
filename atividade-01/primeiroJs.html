@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+// document.getElementById("paragrafo").innerHTML = "Texto modificado pelo JS";
+
+function mudarTexto(){
+document.getElementById('paragrafo').innerHTML = 'Novo Texto, olá javascript';
+}
+
+function mudarTamanho(){
+document.getElementById('paragrafo').style.fontSize = '35px';
+}
+
+function ocultarTexto(){
+document.getElementById('paragrafo').style.display = 'none';
+}
+
+function mostrarTexto(){
+document.getElementById('paragrafo').style.display = 'block';
+}
+
+</script>
+
+<script src="https://www.w3schools.com/js/myScript.js"></script>
+
+<button type='button'
+onclick="mudarTexto()"
+>Mudar o Texto HTML</button>
+
+<button type='button'
+onclick="mudarTamanho()"
+>Colocar o texto com tamanho 35px</button>
+
+<button type='button'
+onclick="ocultarTexto()"
+>Ocultar Texto</button>
+
+<button type='button'
+onclick="mostrarTexto()"
+>Mostrar Texto</button>
+<h2>Título H2</h2>
+<script>
+    document.write("Saída de Texto com a function write");
+    // window.alert("Caixa de mensagem");
+    console.log("Esse texto só é visivel no console do navegador.");
+</script>
+<p id='paragrafo'>JavaScript can change HTML content.</p>
+<p id="demo" onclick="myFunction()">Clique em mim para mudar o meu texto</p>
+
+
+</body>
+</html>
