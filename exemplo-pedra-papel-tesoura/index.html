@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pedra-Papel-Tesoura</title>
+
+    <style>
+        h1 {
+            text-align: center;
+            border: 8px solid black;
+            background-color: black;
+            color: white;
+            margin-left: 200px;
+            margin-right: 200px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        #campo {
+            text-align: center;
+            border: 8px solid black;
+            margin-left: 200px;
+            margin-right: 200px;
+
+        }
+
+        img {
+            filter: grayscale(100%);
+        }
+
+        #placar {
+            border: 8px solid black;
+            text-align: center;
+            margin-left: 200px;
+            margin-right: 200px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 80pt;
+            height: 100px;
+        }
+
+        #placar div {
+            text-align: center;
+            display: inline;
+        }
+
+        #bt-play {
+            height: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+        var escolhaJogador = "";
+        var qtVitoriasJogador = 0;
+        var qtVitoriasCP = 0;
+
+        function escolher(escolhida) {
+            document.getElementById("pedra").style.filter = "grayscale(100%)";
+            document.getElementById("papel").style.filter = "grayscale(100%)";
+            document.getElementById("tesoura").style.filter = "grayscale(100%)";
+            console.log(escolhida.id);
+            document.getElementById(escolhida.id).style.filter = "none";
+            escolhaJogador = escolhida.id;
+        }
+
+        function jogar() {
+
+            if (escolhaJogador == "") {
+                alert("Antes de jogar, é necessário escolher um opção.");
+                return false;
+            }
+            // 2 informações necessário
+            // 1 - qual foi a opção que o jogador escolheu
+            // 2 - qual vai ser o valor pro computador
+            var escolhaCP = ""
+            console.log("Jogador marcou > " + escolhaJogador);
+            var aleatorio = Math.floor(Math.random() * 3);
+            // vai converter o número para o texto
+            switch (aleatorio) {
+                case 0:
+                    escolhaCP = "pedra";
+                    break;
+                case 1:
+                    escolhaCP = "papel";
+                    break;
+                case 2:
+                    escolhaCP = "tesoura";
+                    break;
+                default:
+                    break;
+            }
+
+            console.log("PC marcou > " + escolhaCP);
+            document.getElementById("img-pc").src = "pc-" + escolhaCP + ".jpg";
+            document.getElementById("img-pc").style.filter = "none";
+            // pedra .. ??
+            // papel .. ??
+            // tesoura .. ??
+            var resultado = "";
+            var corResultado = "";
+
+            if (
+                (escolhaJogador == "pedra" && escolhaCP == "tesoura") ||
+                (escolhaJogador == "papel" && escolhaCP == "pedra") ||
+                (escolhaJogador == "tesoura" && escolhaCP == "papel")) {
+                qtVitoriasJogador++;
+                resultado = "Vitória";
+                corResultado = "blue";
+            } else if (escolhaJogador == escolhaCP) {
+                resultado = "Empate";
+                corResultado = "black";
+                corResultado = "yellow";
+            } else {
+                resultado = "Derrota";
+                qtVitoriasCP++;
+                corResultado = "red";
+            }
+            var terminou = false;
+
+            if (qtVitoriasJogador == 5) {
+                alert("Parabens você ganhou!");
+                terminou = true;
+            }
+            if (qtVitoriasCP == 5) {
+                alert("Que pena não foi agora!");
+                terminou = true;
+            }
+
+            console.log(resultado);
+            document.getElementById("placar-jogar").innerText = qtVitoriasJogador;
+            document.getElementById("placar-resultado").innerText = resultado;
+            document.getElementById("placar-resultado").style.color = corResultado
+            document.getElementById("placar-pc").innerText = qtVitoriasCP;
+
+            if (terminou) {
+                var continuar = confirm("Deseja continuar?");
+                if(continuar){
+                    location.replace("index.html");
+                } else{
+                    document.getElementById("bt-play").onclick = "";
+                }
+                
+            }
+
+
+        }
+
+
+    </script>
+
+    <h1>Desafio Pedra-Papel-Tesoura</h1>
+    <div id="campo">
+        <img id="pedra" class="opcao-jogo" onclick="escolher(this)" src="pedra.png" alt="">
+        <img id="papel" class="opcao-jogo" onclick="escolher(this)" src="papel.png" alt="">
+        <img id="tesoura" class="opcao-jogo" onclick="escolher(this)" src="tesoura.png" alt="">
+        <img id="img-pc" src="pc.jpg" alt="">
+    </div>
+    <br>
+    <div id="placar">
+        <div id="placar-jogar">0</div>
+        <div id="placar-resultado">-</div>
+        <div id="placar-pc">0</div>
+
+    </div>
+    <br>
+    <img id="bt-play" onclick="jogar()" src="play.png" alt="">
+
+</body>
+
+</html>
