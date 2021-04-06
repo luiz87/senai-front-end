@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo API de CEP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script>
+
+        function acessarAPI(link, executarFuncao) {
+            var xhtml = new XMLHttpRequest();
+            xhtml.open('GET', link, true);
+            xhtml.send();
+            xhtml.onreadystatechange = function () {
+                if (this.readyState == 4 &&
+                    this.status == 200) {
+                    executarFuncao(this.responseText);
+                }
+                // alert(this.readyState + " " + this.status);
+                if (this.readyState == 4 &&
+                    this.status == 0) {
+                    document.getElementById("logradouro").value = '';
+                    document.getElementById("complemento").value = '';
+                    document.getElementById("bairro").value = '';
+                    document.getElementById("localidade").value = '';
+                }
+            }
+        }
+
+        function buscarEndereco(obj) {
+            console.log(obj.value)
+            acessarAPI(`https://viacep.com.br/ws/${obj.value}/json/`, preencherForm)
+        }
+
+        function preencherForm(obj) {
+            console.log(obj)
+            obj = JSON.parse(obj)
+            document.getElementById("cep").value = obj.cep;
+            document.getElementById("logradouro").value = obj.logradouro;
+            document.getElementById("complemento").value = obj.complemento;
+            document.getElementById("bairro").value = obj.bairro;
+            document.getElementById("localidade").value = obj.localidade;
+
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Exemplo de API de CEP</h1>
+
+        <form id="formulario" action="">
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input id="cep" name="cep" type="text" class="form-control" onblur="buscarEndereco(this)" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="logradouro">Logradouro:</label>
+                <input id="logradouro" name="logradouro" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="complemento">Complemento:</label>
+                <input id="complemento" name="complemento" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="bairro">Bairro:</label>
+                <input id="bairro" name="bairro" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="localidade">Localidade:</label>
+                <input id="localidade" name="localidade" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="numero">Número:</label>
+                <input id="numero" name="numero" type="text" class="form-control">
+            </div>
+            <button class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
