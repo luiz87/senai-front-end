@@ -1,4 +1,7 @@
 var lsPessoa = JSON.parse(localStorage.getItem("lsPessoa"));
+if (lsPessoa == null) {
+    lsPessoa = [];
+}
 
 function gavar() {
     var pessoa = {};
