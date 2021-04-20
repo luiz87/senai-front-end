@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo Paginação</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        td span {
+            cursor: pointer;
+            background-color: rgba(47, 79, 79,0.5);
+            color: white;
+            font-weight: bold;
+            font-size: 15px;
+            margin-left: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 4px;
+            border-radius: 5px;
+        }
+        td span:hover {
+            background-color: rgb(47, 79, 79);
+        }
+
+    </style>
 </head>
 
 <body>
@@ -34,6 +52,18 @@
 
         pgAtual = 0;
 
+        function mudar(i,proximo){
+            i = Number(i)
+            proximo = Number(proximo)
+            if(lsAlunos[i+proximo] == undefined){
+                return ;
+            }
+            x = lsAlunos[i];
+            lsAlunos[i] = lsAlunos[i+proximo];
+            lsAlunos[i+proximo] = x;
+            carregarTabela(document.getElementById('pgAt').value)
+        }
+
         function carregarTabela(pg) {
             tamanhoArray = Math.ceil((lsAlunos.length) / 5);
             if (pg <= 0 || pg > tamanhoArray) {
@@ -47,7 +77,7 @@
             for (i = inicio; i < fim; i++) {
                 // console.log(lsAlunos[i])
                 if (lsAlunos[i] == undefined) break;
-                txLinhas += `<tr><td>${Number(i) + 1}</td><td>${lsAlunos[i]}</td></tr>`;
+                txLinhas += `<tr><td>${Number(i) + 1}</td><td>${lsAlunos[i]}</td><td><span onclick='mudar(${i},-1)' >&and;</span><span onclick='mudar(${i},1)'>&or;</span></td></tr>`;
             }
             document.getElementById("corpoTabela").innerHTML = txLinhas;
             itemLista = document.getElementById("pg-" + pg);

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Alfa Slab One|Calistoga' rel='stylesheet'>
+    <title>OVERDOG</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1 {
+            background-color: #ffd900;
+            color: black;
+            font-family: "Alfa Slab One";
+            font-size: 32px;
+            letter-spacing: 5px;
+            padding-left: 12%;
+            border-bottom: solid black 3px;
+        }
+
+        h1 span {
+            background-color: black;
+            color: #ffd900;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        #enviar {
+            background-color: black;
+            color: yellow;
+            position: fixed;
+            right: 12%;
+            top: 5px;
+            font-family: "Alfa Slab One";
+            font-size: 22px;
+            letter-spacing: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .conteudo {
+            padding-left: 12%;
+            padding-right: 12%;
+        }
+
+        h2 {
+            margin-top: 4px;
+            border-left: solid orange 3px;
+            border-bottom: solid orange 3px;
+            padding-left: 3px;
+            font-size: 18px;
+            font-family: Calistoga;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        h2 span {
+            font-size: 10px;
+            position: absolute;
+            right: 2px;
+        }
+
+        .produto{
+            background-color: #fff4b2;
+            position: relative;
+            height: 66px;
+            margin-top: 6px;
+        }
+
+        .produto .cod-produto{
+            position: absolute;
+            background-color: black;
+            color: #ffd900;
+            width: 20%;
+            font-family: "Alfa Slab One";
+            text-align: center;
+            font-size: 32px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+
+        .produto .valor-produto{
+            top: 50px;
+            position: absolute;
+            background-color: #ffd900;
+            color: black;
+            width: 20%;
+            font-family: "Alfa Slab One";
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .produto .desc-produto{
+            padding-left: 20.5%;
+        }
+
+        .adicionais{
+            background-color: #fff4b2;
+            position: relative;
+            height: 22px;
+            margin-top: 2px;
+        }
+
+        .adicionais .valor-produto{
+            position: absolute;
+            background-color: black;
+            color: #ffd900;
+            width: 20%;            
+            font-family: "Alfa Slab One";
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .adicionais .desc-produto{
+            padding-left: 20.5%;
+        }
+
+        @media only screen and (max-width: 500px) {
+            #enviar {
+                bottom: 0px;
+                left: 0px;
+                top: 93%;
+                width: 100%;
+            }
+
+            h1 {
+                padding-left: 2%;
+                font-size: 25px;
+                letter-spacing: 1px;
+            }
+
+            .conteudo {
+                padding-left: 4px;
+                padding-right: 4px;
+            }
+
+            .adicionais .valor-produto{
+                width: 33%;
+            }
+
+            .adicionais .desc-produto{
+            padding-left: 33.5%;
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>OVER<span>DOG</span>
+            <button id="enviar">ENVIAR</button>
+        </h1>
+    </header>
+    <div class="conteudo">
+        <h2>Salsicha na Chapa <span>HOTDOG</span></h2>
+        <div class="produto">            
+            <div class="cod-produto">
+                01
+            </div>
+            <div class="valor-produto">
+                R$ 10.0
+            </div>
+            <span class="desc-produto">
+                Pão, Salsicha, ...
+            </span>
+        </div>
+        <div class="produto">            
+            <div class="cod-produto">
+                02
+            </div>
+            <div class="valor-produto">
+                R$ 10.0
+            </div>
+            <span class="desc-produto">
+                Pão, Salsicha, ...
+            </span>
+        </div>
+        <h2>Frango na Chapa <span>HOTDOG</span></h2>
+        <div class="produto">            
+            <div class="cod-produto">
+                04
+            </div>
+            <div class="valor-produto">
+                R$ 10.0
+            </div>
+            <span class="desc-produto">
+                Pão, Salsicha, ...
+            </span>
+        </div>
+        <h2>ADICIONAIS</h2>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 10.0 
+            </div>
+            <span class="desc-produto">
+                COMBO batata+refri
+            </span>
+        </div>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 2.0 
+            </div>
+            <span class="desc-produto">
+                Batata Palha
+            </span>
+        </div>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 3.0 
+            </div>
+            <span class="desc-produto">
+                Calabresa
+            </span>
+        </div>
+        <h2>Bebidas</h2>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 10.0 
+            </div>
+            <span class="desc-produto">
+                COMBO batata+refri
+            </span>
+        </div>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 10.0 
+            </div>
+            <span class="desc-produto">
+                COMBO batata+refri
+            </span>
+        </div>
+        <div class="adicionais">
+            <div class="valor-produto">
+                R$ 10.0 
+            </div>
+            <span class="desc-produto">
+                COMBO batata+refri
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>
