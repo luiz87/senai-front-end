@@ -66,14 +66,15 @@
             right: 2px;
         }
 
-        .produto{
+        .produto {
             background-color: #fff4b2;
             position: relative;
             height: 66px;
             margin-top: 6px;
+            cursor: pointer;
         }
 
-        .produto .cod-produto{
+        .produto .cod-produto {
             position: absolute;
             background-color: black;
             color: #ffd900;
@@ -85,7 +86,7 @@
             padding-bottom: 4px;
         }
 
-        .produto .valor-produto{
+        .produto .valor-produto {
             top: 50px;
             position: absolute;
             background-color: #ffd900;
@@ -96,28 +97,28 @@
             font-size: 12px;
         }
 
-        .produto .desc-produto{
+        .produto .desc-produto {
             padding-left: 20.5%;
         }
 
-        .adicionais{
+        .adicionais {
             background-color: #fff4b2;
             position: relative;
             height: 22px;
             margin-top: 2px;
         }
 
-        .adicionais .valor-produto{
+        .adicionais .valor-produto {
             position: absolute;
             background-color: black;
             color: #ffd900;
-            width: 20%;            
+            width: 20%;
             font-family: "Alfa Slab One";
             text-align: center;
             font-size: 16px;
         }
 
-        .adicionais .desc-produto{
+        .adicionais .desc-produto {
             padding-left: 20.5%;
         }
 
@@ -140,16 +141,54 @@
                 padding-right: 4px;
             }
 
-            .adicionais .valor-produto{
+            .adicionais .valor-produto {
                 width: 33%;
             }
 
-            .adicionais .desc-produto{
-            padding-left: 33.5%;
+            .adicionais .desc-produto {
+                padding-left: 33.5%;
+            }
+
         }
+
+        .add-produto {
+            height: 23px;
+            background-color: #8080806e;
+            position: relative;
+            text-align: center;
+            font-family: "Alfa Slab One";
+            display: none;
+
+        }
+
+        .botoes {
+            position: absolute;
+            right: 10px;
+            top: -8px;
+        }
+
+        .botoes button {
+            width: 25px;
+            height: 35px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bt-mais {
+            background-color: #ffd900;
+            color: black;
+            font-family: "Alfa Slab One";
+        }
+
+        .bt-menos {
+            background-color: black;
+            color: #ffd900;
+            font-family: "Alfa Slab One";
 
         }
     </style>
+
+
 </head>
 
 <body>
@@ -158,93 +197,93 @@
             <button id="enviar">ENVIAR</button>
         </h1>
     </header>
-    <div class="conteudo">
+    <div class="conteudo" id="conteudo">
         <h2>Salsicha na Chapa <span>HOTDOG</span></h2>
-        <div class="produto">            
-            <div class="cod-produto">
-                01
+        <div class="item-produto">
+            <div class="produto">
+                <div class="cod-produto">
+                    01
+                </div>
+                <div class="valor-produto">
+                    R$ 10.0
+                </div>
+                <span class="desc-produto">
+                    Pão, Salsicha, ...
+                </span>
             </div>
-            <div class="valor-produto">
-                R$ 10.0
+            <div class="add-produto">
+                <span class="valor-parcial">
+                    R$ 0.0 (x0)
+                </span>
+                <span class="botoes">
+                    <button class="bt-mais">+</button>
+                    <button class="bt-menos">-</button>
+                </span>
             </div>
-            <span class="desc-produto">
-                Pão, Salsicha, ...
-            </span>
         </div>
-        <div class="produto">            
-            <div class="cod-produto">
-                02
-            </div>
-            <div class="valor-produto">
-                R$ 10.0
-            </div>
-            <span class="desc-produto">
-                Pão, Salsicha, ...
-            </span>
-        </div>
-        <h2>Frango na Chapa <span>HOTDOG</span></h2>
-        <div class="produto">            
-            <div class="cod-produto">
-                04
-            </div>
-            <div class="valor-produto">
-                R$ 10.0
-            </div>
-            <span class="desc-produto">
-                Pão, Salsicha, ...
-            </span>
-        </div>
+
         <h2>ADICIONAIS</h2>
         <div class="adicionais">
             <div class="valor-produto">
-                R$ 10.0 
-            </div>
-            <span class="desc-produto">
-                COMBO batata+refri
-            </span>
-        </div>
-        <div class="adicionais">
-            <div class="valor-produto">
-                R$ 2.0 
-            </div>
-            <span class="desc-produto">
-                Batata Palha
-            </span>
-        </div>
-        <div class="adicionais">
-            <div class="valor-produto">
-                R$ 3.0 
-            </div>
-            <span class="desc-produto">
-                Calabresa
-            </span>
-        </div>
-        <h2>Bebidas</h2>
-        <div class="adicionais">
-            <div class="valor-produto">
-                R$ 10.0 
-            </div>
-            <span class="desc-produto">
-                COMBO batata+refri
-            </span>
-        </div>
-        <div class="adicionais">
-            <div class="valor-produto">
-                R$ 10.0 
-            </div>
-            <span class="desc-produto">
-                COMBO batata+refri
-            </span>
-        </div>
-        <div class="adicionais">
-            <div class="valor-produto">
-                R$ 10.0 
+                R$ 10.0
             </div>
             <span class="desc-produto">
                 COMBO batata+refri
             </span>
         </div>
     </div>
+    <script>
+
+        qtProduto = 0;
+        function addProduto(i, add) {
+            p = lsProdutos[i]
+            p.qt += add
+            if(p.qt < 0 ) {return ;}
+            valorAtual = p.qt * p.valor
+            document.getElementById(`parcial-${i}`).innerHTML = `R$ ${valorAtual.toFixed(1)} (x${p.qt})`;
+        }
+
+        var lsProdutos = [
+              { qt:0, cod: "01", valor: 10, grupo: "Salsicha na Chapa", categoria: "HOTDOG", descricao: "Pão, salsicha, ...." }
+            , { qt:0, cod: "02", valor: 12.5, grupo: "Salsicha na Chapa", categoria: "HOTDOG", descricao: "Pão, salsicha, ...." }
+            , { qt:0, cod: "03", valor: 29.5, grupo: "Salsicha na Chapa", categoria: "HOTDOG", descricao: "Pão, salsicha, ...." }
+        ];
+
+        function carregarProdutos() {
+            for (i in lsProdutos) {
+                p = lsProdutos[i];
+                var produto = document.getElementsByClassName("item-produto")[0].cloneNode(true);
+                produto.getElementsByClassName("cod-produto")[0].innerHTML = p.cod;
+                produto.getElementsByClassName("valor-produto")[0].innerHTML = p.valor;
+                produto.getElementsByClassName("desc-produto")[0].innerHTML = p.descricao;
+                document.getElementById("conteudo").appendChild(produto);
+                
+                var btMais = produto.getElementsByClassName("bt-mais")[0];
+                btMais.setAttribute("onclick", `addProduto(${i} , 1)`);
+
+                var btMenos = produto.getElementsByClassName("bt-menos")[0];
+                btMenos.setAttribute("onclick", `addProduto(${i} , -1)`);
+                
+                produto.getElementsByClassName("valor-parcial")[0].setAttribute("id",`parcial-${i}`)
+            }
+            document.getElementsByClassName("item-produto")[0].setAttribute("style","display: none;");
+        }
+
+        carregarProdutos();
+
+        var acc = document.getElementsByClassName("produto");
+        for (i in acc) {
+            temp = acc[i];
+            temp.addEventListener("click", function () {
+                var panel = this.nextElementSibling;
+                if (panel.style.display == "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
