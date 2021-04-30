@@ -72,6 +72,74 @@ function carregaEvento(acc) {
     }
 }
 
+pedido = ''
+
+btEnviar = document.getElementById("enviar")
+btEnviar.addEventListener("click", function () {
+    msg = ''
+    modal = document.getElementById("modal-enviar")    
+    total = 0
+    for (i in lsProdutos) {
+        p = lsProdutos[i]
+        if (p.qt > 0) {
+            totalP = (p.qt * p.valor).toFixed(1)
+            total += Number(totalP)
+            msg += (p.cod == '')? `${p.grupo} ${p.descricao}`: `COD ${p.cod}`
+            msg += ` (${p.qt}x ${p.valor.toFixed(1)}) = ${totalP}<br>`
+        }
+    }
+    if (total == 0) {
+        msg = 'Escolha ao menos um produto.'
+        rodape = document.getElementById("rodape-modal")
+        rodape.innerHTML = ''
+    } else {
+        msg += `Total dos Produtos = ${total.toFixed(1)}<br>`
+        pedido = msg
+        msg += `<div id="complemento-envio">
+        <input type="text" id="endereco" placeholder="Digite seu Endereço" >
+        <input type="text" id="nome" placeholder="Digite seu Nome">
+        <span> Clique em "CONTINUAR" para enviar seu pedido via Whatsapp.</span>
+        </div>`
+        rodape = document.getElementById("rodape-modal")
+        rodape.innerHTML = '<button type="button" onclick="continuar()">CONTINUAR</button>'
+    }
+    document.getElementsByClassName("corpo-modal")[0].innerHTML = msg
+    modal.style.display = "block"
+
+})
+
+function continuar() {
+    nome = document.getElementById("nome")
+    if (nome.value == '') {
+        alert("Digite seu nome")
+    }else{
+        fone = '5561994370463'
+        nome = document.getElementById("nome").value
+        endereco = document.getElementById("endereco").value
+        pedido = `Olá meu nome é *${nome}* desejo fazer o seguinte pedido<br>` + pedido
+        pedido += (endereco != '') ? `Meu endereço é ${endereco}` : ''
+
+        pedido = pedido.replaceAll('<br>','\n')
+        pedido = encodeURI(pedido)
+        link = `https://api.whatsapp.com/send?phone=${fone}&text=${pedido}`
+        console.log(link)
+        window.open(link,'_blanck')
+    }
+
+}
+
+btFecharModal = document.getElementById("fechar-modal")
+btFecharModal.addEventListener("click", function () {
+    modal = document.getElementById("modal-enviar")
+    modal.style.display = "none"
+})
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
 carregarProdutos();
 acc = document.getElementsByClassName("adicionais");
 carregaEvento(acc)
